@@ -10,8 +10,8 @@ for line in sys.stdin:
     words = line.split()
     file_name = os.environ["mapreduce_map_input_file"]
     date = file_name.split('/', 2)[2].split('-', 3)[1]
-    date = date[0:len(date)-3]+"-"+date[len(date)-2:]
-    if not any(elem == '' or elem is None for elem in words):
+    date2 = date[0:len(date) - 4] + "-" + date[len(date) - 4:len(date) - 2] + "-" + date[len(date) - 2:len(date)]
+    if not any(elem == '' or elem is None for elem in words) and len(words)==4:
         if words[0]=='en':
             if (words[1][:1] not in filter1):
                 title = words[1].split(":", 1)[0].lower()
