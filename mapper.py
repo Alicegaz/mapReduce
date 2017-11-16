@@ -8,7 +8,11 @@ filter4 = ['404_error/', 'Main_Page', 'Hypertext_Transfer_Protocol', 'Search']
 for line in sys.stdin:
     line = line.strip()
     words = line.split()
-    file_name = os.environ["mapreduce_map_input_file"]
+    try:
+        file_name = os.environ['mapreduce_map_input_file']
+    except KeyError:
+        file_name = os.environ['map_input_file’]
+          #file_name = os.environ["mapreduce_map_input_file"]
     date = file_name.split('/', 2)[2].split('-', 3)[1]
     date2 = date[0:len(date) - 4] + "-" + date[len(date) - 4:len(date) - 2] + "-" + date[len(date) - 2:len(date)]
     if not any(elem == '' or elem is None for elem in words) and len(words)==4:
