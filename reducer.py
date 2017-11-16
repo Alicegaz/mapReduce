@@ -11,14 +11,14 @@ for line in sys.stdin:
         count = int(count)
     except ValueError:
         continue
-
+    
     if current_word == word:
         current_count += count
-        if dictionary.get(date) is None:
-            dictionary.update({date: count})
+        if dictionary[date] is None:
+            dictionary[date] = count
         else:
-            new_count = int(dictionary.get(date)) + count
-            dictionary.update({date: new_count})
+            new_count = int(dictionary[date]) + count
+            dictionary[date] = new_count
     else:
         if current_word and current_count>100000:
             print('{:d}\t{:s}'.format(current_count, current_word)),
